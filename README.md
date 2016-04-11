@@ -49,11 +49,22 @@ Next, copy the contents of the `script.php` files into the area defined above an
 
 If you want to change the look of the boxes on the "view all posts" page, or where they become full width, this is where you will want to edit it.
 
-And the last thing you need to do is change the file destination for the following to match your file destination
+And the last thing you need to do is change a few little details to match the site you are on.
+The most important is to make sure the file destination matches your file destination
 ```
 $page = "uploads/" . $getPage . ".php";
 $directory = 'uploads/';
 ```
+The there's the link changing
+`$url = "http://example.com/news.php?" . $query;`
+You will need to change the url from `example.com/news.php` to whatever the url is in your browser to get to the news page.
+And finally there's the SEO bit. Anyone who's worried about SEO, who can read PHP and sees how this will work, will probably be thinking that the `<title>` tag and `<meta>` description are not going to be accessible. However, you will notice the following
+```
+<title>My Example News Page - This section needs editing</title>
+<meta name="description" content="This is an example news page. This section needs editing">
+```
+Edit these for the default page, and then for each news post, ensure you put the following in. As of HTML5 these 2 elements are able to be used in the body, and work as they would in the head.
+
 Remember this is assuming that the directory you are saving the news items is in the same folder as the `news.php` file itself.
 
 ### 3: Writing posts

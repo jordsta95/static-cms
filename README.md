@@ -36,6 +36,8 @@ Before you continue following this tutorial you will need to ensure you have cre
 
 Depending on how you want the "view all posts" part of the page to look, you may want to do some CSS work to give the posts a border, background, line up in rows of more than 2, etc.
 
+Finally, ensure you do not have a `<title>` or any `<meta>` tags in the header of the page.
+
 #### 2.2: Implementation
 Before you begin you need to make sure you have a PHP file and not an HTML file. If the page you are trying to edit ends in `.html` or `.htm` change the extension to `.php`. Don't worry, this won't break the site!
 

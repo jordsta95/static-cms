@@ -10,9 +10,7 @@
 } else {
 	echo '
 	<title>My Example News Page - This section needs editing</title>
-<meta name="description" content="This is an example news page. This section needs editing">
-	<h1 class="center">Page is under construction</h1>
-	<h2 class="centre">Check back again soon</h2>';
+<meta name="description" content="This is an example news page. This section needs editing">';
 	foreach ($scanned_directory as $value) {
 		$file = file_get_contents('uploads/' . $value);
 		$less_words = implode(' ', array_slice(explode(' ', $file), 0, 50));

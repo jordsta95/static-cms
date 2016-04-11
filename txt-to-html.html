@@ -1,0 +1,146 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Text to JS</title>
+<script   src="http://code.jquery.com/jquery-1.12.2.min.js"></script>
+<style>
+.inline{
+	display:inline-block;
+}
+#cheatsheet{
+	position:absolute;
+	right:10%;
+	top:0;
+}
+</style>
+</head>
+<body>
+<input type="text" id="title" value="Page Title"><br>
+<input type="text" id="desc" value="Page Description"><br>
+<textarea id="text"  rows="10" cols="70">
+[#]This is an h1 tag[/#]
+[#2]This is an h2 tag[/#2]
+[#6]This is an h6 tag[/#6]
+<p>All numbers between 2 and 6 work, just use the equivalent number of hashes between them</p>
+[p]Paragraphs should be enclosed like so[/p]
+Line breaks should be done by typing &lt;br&gt; OR by leaving a linebreak
+To do a link you should type [link"link to site"]anchor text[/link] <br>
+[b]Bold text should be surrounded like so[/b] <br>
+[i]Italics like this[/i]<br>
+[img link"" alt"image"]
+Note: Writing any element in HTML is fine!
+</textarea>
+<textarea id="display" rows="10" cols="50">
+</textarea>
+<div id="cheatsheet">
+<h3>How to use:</h3>
+<ul>
+<li>Type news post in the left textbox</li>
+<li>Press the HTMLify button to see how it will look</li>
+<li>Press confirm if the output below is correct</li>
+<li>Copy the text in the second text box, and add it to a new post php file</li>
+</ul>
+<strong>YOU CAN USE HTML CODE IF YOU PREFER</strong>
+<hr>
+<h3>Styling</h3>
+<span>[#]Example[/#] = <h1 class="inline">Example</h1></span><br>
+<span>[#2]Example[/#2] = <h2 class="inline">Example</h2></span><br>
+<span>[#3]Example[/#3] = <h3 class="inline">Example</h3></span><br>
+<span>[#4]Example[/#4] = <h4 class="inline">Example</h4></span><br>
+<span>[#5]Example[/#5] = <h5 class="inline">Example</h5></span><br>
+<span>[#6]Example[/#6] = <h6 class="inline">Example</h6></span><br>
+<p>[b]Example[/b] = <strong class="inline">Example</strong></p>
+<p>[i]Example[/i] = <em class="inline">Example</em></p>
+<span>[p]Example[/p] = <p class="inline">Example</p></span>
+<p>[link"http://google.com"]Example[/link] = <a href="http://google.com" class="inline">Example</a></p>
+<span>[img link"http://www.famfamfam.com/lab/icons/mini/icons/icon_accept.gif"] = <img src="http://www.famfamfam.com/lab/icons/mini/icons/icon_accept.gif"> <br>To add alt text, for when images can't be displayed use: <br> [img link"http://www.famfamfam.com/lab/icons/mini/icons/icon_accept.gif" alt"Alt Text Here"]</span>
+</div>
+<br>
+<button id="convert" onClick="convert()">HTMLify</button><button id="confirmText" onClick="confirmText()">Confirm</button><button id="download" onClick="download()">Confirm</button>
+<div id="text-input">
+</div>
+<div id="toPrint" style="display:none;">
+</div>
+<script>
+function convert(){
+var gettext = $("#text").val();
+var h6c = gettext.replace(/\[\/#6\]/g,"</h6>");
+var h6 = h6c.replace(/\[\#6\]/g,"<h6>");
+var h5c = h6.replace(/\[\/#5\]/g,"</h5>");
+var h5 = h5c.replace(/\[\#5\]/g, "<h5>");
+var h4c = h5.replace(/\[\/\#4\]/g,"</h4>");
+var h4 = h4c.replace(/\[\#4\]/g,"<h4>");
+var h3c = h4.replace(/\[\/\#3\]/g, "</h3>");
+var h3 = h3c.replace(/\[\#3\]/g, "<h3>");
+var h2c = h3.replace(/\[\/\#2\]/g,"</h2>");
+var h2 = h2c.replace(/\[\#2\]/g,"<h2>");
+var h1c = h2.replace(/\[\/#\]/g, "</h1>");
+var h1 = h1c.replace(/\[#\]/g, "<h1>");
+var pc = h1.replace(/\[\/p\]/g,"</p>");
+var p = pc.replace(/\[p\]/g,"<p>");
+var br = p.replace(/\n\r?/g,"<br>");
+var ac = br.replace(/\[\/link\]/g,"</a>");
+var am = ac.replace(/\"\]/g,'">');
+var a = am.replace(/\[link\"/g, "<a href=");
+var sc = a.replace(/\[\/b\]/g,"</strong>");
+var s = sc.replace(/\[b\]/g,"<strong>");
+var ic = s.replace(/\[\/i\]/g,"</em>");
+var i = ic.replace(/\[\i\]/g,"<em>");
+var img = i.replace(/\[img link\"/g, '<img src"');
+var finalize = img.replace(/\>\<br\>/g,">");
+$("#text-input").html(finalize);
+}
+</script>
+<script>
+function confirmText(){
+var gettext = $("#text").val();
+var h6c = gettext.replace(/\[\/#6\]/g,"</h6>");
+var h6 = h6c.replace(/\[\#6\]/g,"<h6>");
+var h5c = h6.replace(/\[\/#5\]/g,"</h5>");
+var h5 = h5c.replace(/\[\#5\]/g, "<h5>");
+var h4c = h5.replace(/\[\/\#4\]/g,"</h4>");
+var h4 = h4c.replace(/\[\#4\]/g,"<h4>");
+var h3c = h4.replace(/\[\/\#3\]/g, "</h3>");
+var h3 = h3c.replace(/\[\#3\]/g, "<h3>");
+var h2c = h3.replace(/\[\/\#2\]/g,"</h2>");
+var h2 = h2c.replace(/\[\#2\]/g,"<h2>");
+var h1c = h2.replace(/\[\/#\]/g, "</h1>");
+var h1 = h1c.replace(/\[#\]/g, "<h1>");
+var pc = h1.replace(/\[\/p\]/g,"</p>");
+var p = pc.replace(/\[p\]/g,"<p>");
+var br = p.replace(/\n\r?/g,"<br>");
+var ac = br.replace(/\[\/link\]/g,"</a>");
+var am = ac.replace(/\"\]/g,'">');
+var a = am.replace(/\[link\"/g, "<a href=");
+var sc = a.replace(/\[\/b\]/g,"</strong>");
+var s = sc.replace(/\[b\]/g,"<strong>");
+var ic = s.replace(/\[\/i\]/g,"</em>");
+var i = ic.replace(/\[\i\]/g,"<em>");
+var finalize = i.replace(/\>\<br\>/g,">");
+var getDesc = $("#desc").val();
+var getTitle = $("#title").val();
+var finished = '<title>'+getTitle +'</title>'+ '<meta name="description" content="' + getDesc + '">' + finalize;
+$("#display").html(finished);
+}
+</script>
+<script>
+function download(){
+	var getoutput= $("#display").val();
+	setTimeout(function(){ 
+	var title = $('#title').val();
+	var today = new Date();
+	var useToday = today.toISOString().substring(0, 10);
+	
+    var a = document.body.appendChild(
+        document.createElement("a")
+    );
+	a.download = useToday+ title +".php";
+    a.href = "data:text/html," + getoutput;
+    a.click();
+	}, 1000);
+	};
+	
+	</script>
+</body>
+</html>

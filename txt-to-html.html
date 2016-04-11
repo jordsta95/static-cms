@@ -129,13 +129,14 @@ function download(){
 	var getoutput= $("#display").val();
 	setTimeout(function(){ 
 	var title = $('#title').val();
+	var removeSpace = title.replace(/ /g,"-");
 	var today = new Date();
 	var useToday = today.toISOString().substring(0, 10);
 	
     var a = document.body.appendChild(
         document.createElement("a")
     );
-	a.download = useToday+ title +".php";
+	a.download = useToday+ "-" + removeSpace +".php";
     a.href = "data:text/html," + getoutput;
     a.click();
 	}, 1000);

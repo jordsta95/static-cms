@@ -60,6 +60,10 @@ $directory = 'uploads/';
 The there's the link changing
 `$url = "http://example.com/news.php?" . $query;`
 You will need to change the url from `example.com/news.php` to whatever the url is in your browser to get to the news page.
+
+If you would like the post preview on the "view all posts" page to have more or less words than 50 you will need to edit the following line to suit your needs
+`$less_words = implode(' ', array_slice(explode(' ', $file), 0, 50));`
+
 And finally there's the SEO bit. Anyone who's worried about SEO, who can read PHP and sees how this will work, will probably be thinking that the `<title>` tag and `<meta>` description are not going to be accessible. However, you will notice the following
 ```
 <title>My Example News Page - This section needs editing</title>
@@ -70,12 +74,38 @@ Edit these for the default page, and then for each news post, ensure you put the
 Remember this is assuming that the directory you are saving the news items is in the same folder as the `news.php` file itself.
 
 ### 3: Writing posts
-To come!
+Unless you have a specific markup you want to follow, the `txt-to-html.html` file will be able to suffice for your needs.
+Before we continue, to use this file you will need Javascript enabled in your browser. As for browser support I have not tested in IE, and I do not intend to. If it doesn't work in Internet Explorer 11, then feel free to tell me, and I will fix this. However, if you are using IE10 or less, then I offer no support.
+
+To write your post load `txt-to-html.html` in the browser of your choosing, and write your news post in the *left* large text area. You can use the panel on the right side of the screen to aid you with styling, for example if you want bold text, or to link somewhere. Note for web-developers: If you are thinking of using this for your business and having non-tech savvy users writing posts, you may want to edit the markdown styling, and have the buttons show/hide depending on what stage people are at
+When you are finished writing press the `Preview` button. This will allow you to see what your blog post is like.
+Press the `Confirm` button if you are happy with the output below. Be aware the styling may be different to your actual post, so it may be an idea to include all typography styles, as well any other changes which may affect the post, just so you can truly see how it looks.
+Now you are done. Press the `Download` button to give you the file ready to upload to the website's server. Or, if your browser/network doesn't allow downloading of files, copy the contents of the second large text area, and paste it into a fresh php file (or a `.txt` file, and then change the extension to `.php`) 
+
+If downloading a file you will notice it downloads a filename that looks like `20160311-Example-Title.php` and this is to ensure ordering is correct for your news posts. What those numbers are at the start is the date when you press download in the format YYYY/MM/DD. If you don't mind them appearing in alphabetical order/reverse alphabetical order then feel free to remove the date at the start of the post.
+Note for web-developers: You could use this value on the `news.php` page to display post age/upload date, or if you work in a time sensitive industry, e.g. you are using it on an ecommerce page and using it to notify users of promotional offers, you could use a date difference to add a warning to posts that are over a month old stating they are outdated, and the offer may no longer apply.
 
 ### 4: Reasoning
-To come!
+There are certain features in here which may make people wonder why they are there, and others which some people may expect that aren't here, let's talk about a few of them.
+
+###### Why are you using include, they are insecure
+They are _potentially_ insecure. This is down to how you handle it. If you are allowing anyone to upload files, then it's insecure. Otherwise, this system is as secure as the server it is hosted on.
+
+###### Why are you using X function over Y
+There's a few functions used which may seem a little backwards to people, and it's either because it's the only function I knew of which did what I needed it to do, or that the alternatives had some issues (such as the strip_tags being used, as alternatives removing the space from the post preview)
+
+###### Why are you using PHP and not Javascript/Python/another potential language
+Javascript is clientside, and can be disabled by the user. You want people to see what you have written, right? As for PHP over other server languages, it's because it's the only one I know. Sorry about that.
 
 ### 5: FAQs
-To come
+###### Q: Why use this over Wordpress, Joomla, Druple, etc.?
+A: There is no reason. If you are setting up a new site, and have no HTML experience other CMS systems are perfect for you. However, if you have a hand-built website or you would much rather use a HTML template/hand-built site, then this is the perfect way to keep a simple new post system in check, without having to change links every time you add a new post.
 
+###### Q: Will there be a system to upload files without having to go through FTP?
+A: Yes, currently figuring out how to add some security though. As much as I would like to submit the system, I would also prefer to not potentially compromise security for users who are just copy/pasting without understanding the basics of the code.
 
+###### Q: Will there be a comments system?
+Most likely, again, it will not be submitted without at least some form of security included.
+
+###### Q: Will there be a full page system?
+Unlikely but not impossible. It is likely to happen, however, it won't be a fancy editor like other CMSs have, and will probably a template page. 

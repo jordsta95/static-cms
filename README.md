@@ -101,6 +101,9 @@ Javascript is clientside, and can be disabled by the user. You want people to se
 ###### Q: Why use this over Wordpress, Joomla, Druple, etc.?
 A: There is no reason. If you are setting up a new site, and have no HTML experience other CMS systems are perfect for you. However, if you have a hand-built website or you would much rather use a HTML template/hand-built site, then this is the perfect way to keep a simple new post system in check, without having to change links every time you add a new post.
 
+###### Q: Does this support RSS Feeds?
+A: Not yet. But it will!
+
 ###### Q: Will there be a system to upload files without having to go through FTP?
 A: Yes, currently figuring out how to add some security though. As much as I would like to submit the system, I would also prefer to not potentially compromise security for users who are just copy/pasting without understanding the basics of the code.
 
